@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="TestPermissions">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items />
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="00 GetInfor.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>00 GetInfor.sql</FullPath>
+        </FileNode>
+        <FileNode Name="05 Prepare Proxy User.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>05 Prepare Proxy User.sql</FullPath>
+        </FileNode>
+        <FileNode Name="06 Add Procedure.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>06 Add Procedure.sql</FullPath>
+        </FileNode>
+        <FileNode Name="10 Test Select.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>10 Test Select.sql</FullPath>
+        </FileNode>
+        <FileNode Name="13 Insert Delete.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>13 Insert Delete.sql</FullPath>
+        </FileNode>
+        <FileNode Name="15 Drop Tables.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>15 Drop Tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="16 Add Login.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>16 Add Login.sql</FullPath>
+        </FileNode>
+        <FileNode Name="20 Test Select Safe.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>20 Test Select Safe.sql</FullPath>
+        </FileNode>
+        <FileNode Name="23 Insert Delete safe.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>23 Insert Delete safe.sql</FullPath>
+        </FileNode>
+        <FileNode Name="25 Drop Tables Safe.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>25 Drop Tables Safe.sql</FullPath>
+        </FileNode>
+        <FileNode Name="26 Add Login Safe.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>26 Add Login Safe.sql</FullPath>
+        </FileNode>
+        <FileNode Name="27 Revert.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>27 Revert.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>
