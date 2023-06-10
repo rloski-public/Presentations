@@ -1,0 +1,24 @@
+let
+    URL = "https://api.census.gov/data/" 
+	& "2021" 
+	& "/acs/acs1/pums?"
+	& "tabulate=" 
+	& "weight(PWGTP)"
+	& "&row+HICOV"
+	& "&row+SEX"
+	& "&row+HHLDRHISP"
+	& "&row+for"
+	& "&HHLDRHISP="
+	& "01:99"
+	& "&for="
+	& "state:06,48",
+    Source = Json.Document(Web.Contents(URL)),
+    #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+    #"Added Custom" = Table.AddColumn(#"Converted to Table", "TableRecord", each Record.FromList([Column1], {"Col1","Col2","Col3","Col4","Col5"})),
+    #"Expanded TableRecord" = Table.ExpandRecordColumn(#"Added Custom", "TableRecord", {"Col1", "Col2", "Col3", "Col4", "Col5"}, {"Col1", "Col2", "Col3", "Col4", "Col5"}),
+    #"Removed Other Columns" = Table.SelectColumns(#"Expanded TableRecord",{"Col1", "Col2", "Col3", "Col4", "Col5"}),
+    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Other Columns", [PromoteAllScalars=true]),
+    #"Renamed Columns" = Table.RenameColumns(#"Promoted Headers",{{"tabulate", "PWGTP"}}),
+    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"PWGTP", Int64.Type}, {"HICOV", type text}, {"HHLDRHISP", type text}, {"SEX", type text}, {"state", type text}})
+in
+    #"Changed Type"

@@ -1,0 +1,10 @@
+let
+    Source = #"PUMS Metadata",
+    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "ST")),
+    #"Expanded values" = Table.ExpandRecordColumn(#"Filtered Rows", "values", {"item"}, {"item"}),
+    item = #"Expanded values"{0}[item],
+    #"Converted to Table" = Record.ToTable(item),
+    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Name", "state"}, {"Value", "State Name"}}),
+    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"State Name", type text}})
+in
+    #"Changed Type"

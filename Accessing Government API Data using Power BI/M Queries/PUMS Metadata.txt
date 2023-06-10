@@ -1,0 +1,10 @@
+let
+    URL = "https://api.census.gov/data/" 
+		& "2021" 
+		& "/acs/acs1/pums/variables.json",
+    Source = Json.Document(Web.Contents(URL)),
+    variables = Record.ToTable(Source[variables]),
+    #"Expanded Value" = Table.ExpandRecordColumn(variables, "Value", {"label", "concept", "predicateType", "group", "limit", "predicateOnly","suggested-weight", "values"}, {"label", "concept", "predicateType", "group", "limit", "predicateOnly","suggested-weight", "values"}),
+    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Value",{{"limit", Int64.Type}, {"label", type text}, {"concept", type text}, {"predicateType", type text}, {"group", type text}, {"predicateOnly", type logical}, {"suggested-weight", type text}})
+in
+    #"Changed Type"

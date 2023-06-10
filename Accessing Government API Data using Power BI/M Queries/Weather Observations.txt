@@ -1,0 +1,32 @@
+let
+
+URL = "https://api.weather.gov/stations/KLAX/observations",
+Headers = [#"accept"="application/geo+json"],
+WebContent = Web.Contents(URL, [Headers=Headers]),
+
+
+// Based on work from https://eriksvensen.wordpress.com/2014/09/15/specifying-json-query-in-power-query-example-statistics-sweden/
+    Source = Json.Document(WebContent),
+    // Based on work from https://eriksvensen.wordpress.com/2014/09/15/specifying-json-query-in-power-query-example-statistics-sweden/
+    features = Source[features],
+    #"Converted to Table" = Table.FromList(features, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"id", "type", "geometry", "properties"}, {"Column1.id", "Column1.type", "Column1.geometry", "Column1.properties"}),
+    #"Expanded Column1.properties" = Table.ExpandRecordColumn(#"Expanded Column1", "Column1.properties", {"@id", "@type", "elevation", "station", "timestamp", "rawMessage", "textDescription", "icon", "presentWeather", "temperature", "dewpoint", "windDirection", "windSpeed", "windGust", "barometricPressure", "seaLevelPressure", "visibility", "maxTemperatureLast24Hours", "minTemperatureLast24Hours", "precipitationLastHour", "precipitationLast3Hours", "precipitationLast6Hours", "relativeHumidity", "windChill", "heatIndex", "cloudLayers"}, {"@id", "@type", "elevation", "station", "timestamp", "rawMessage", "textDescription", "icon", "presentWeather", "temperature", "dewpoint", "windDirection", "windSpeed", "windGust", "barometricPressure", "seaLevelPressure", "visibility", "maxTemperatureLast24Hours", "minTemperatureLast24Hours", "precipitationLastHour", "precipitationLast3Hours", "precipitationLast6Hours", "relativeHumidity", "windChill", "heatIndex", "cloudLayers"}),
+    #"Expanded temperature" = Table.ExpandRecordColumn(#"Expanded Column1.properties", "temperature", {"unitCode", "value", "qualityControl"}, {"temperature.unitCode", "temperature.value", "temperature.qualityControl"}),
+    #"Expanded dewpoint" = Table.ExpandRecordColumn(#"Expanded temperature", "dewpoint", {"unitCode", "value", "qualityControl"}, {"dewpoint.unitCode", "dewpoint.value", "dewpoint.qualityControl"}),
+    #"Expanded windDirection" = Table.ExpandRecordColumn(#"Expanded dewpoint", "windDirection", {"unitCode", "value", "qualityControl"}, {"windDirection.unitCode", "windDirection.value", "windDirection.qualityControl"}),
+    #"Expanded windSpeed" = Table.ExpandRecordColumn(#"Expanded windDirection", "windSpeed", {"unitCode", "value", "qualityControl"}, {"windSpeed.unitCode", "windSpeed.value", "windSpeed.qualityControl"}),
+    #"Expanded windGust" = Table.ExpandRecordColumn(#"Expanded windSpeed", "windGust", {"unitCode", "value", "qualityControl"}, {"windGust.unitCode", "windGust.value", "windGust.qualityControl"}),
+    #"Expanded barometricPressure" = Table.ExpandRecordColumn(#"Expanded windGust", "barometricPressure", {"unitCode", "value", "qualityControl"}, {"barometricPressure.unitCode", "barometricPressure.value", "barometricPressure.qualityControl"}),
+    #"Expanded seaLevelPressure" = Table.ExpandRecordColumn(#"Expanded barometricPressure", "seaLevelPressure", {"unitCode", "value", "qualityControl"}, {"seaLevelPressure.unitCode", "seaLevelPressure.value", "seaLevelPressure.qualityControl"}),
+    #"Expanded visibility" = Table.ExpandRecordColumn(#"Expanded seaLevelPressure", "visibility", {"unitCode", "value", "qualityControl"}, {"visibility.unitCode", "visibility.value", "visibility.qualityControl"}),
+    #"Expanded maxTemperatureLast24Hours" = Table.ExpandRecordColumn(#"Expanded visibility", "maxTemperatureLast24Hours", {"unitCode", "value"}, {"maxTemperatureLast24Hours.unitCode", "maxTemperatureLast24Hours.value"}),
+    #"Expanded minTemperatureLast24Hours" = Table.ExpandRecordColumn(#"Expanded maxTemperatureLast24Hours", "minTemperatureLast24Hours", {"unitCode", "value"}, {"minTemperatureLast24Hours.unitCode", "minTemperatureLast24Hours.value"}),
+    #"Expanded precipitationLastHour" = Table.ExpandRecordColumn(#"Expanded minTemperatureLast24Hours", "precipitationLastHour", {"unitCode", "value", "qualityControl"}, {"precipitationLastHour.unitCode", "precipitationLastHour.value", "precipitationLastHour.qualityControl"}),
+    #"Expanded precipitationLast3Hours" = Table.ExpandRecordColumn(#"Expanded precipitationLastHour", "precipitationLast3Hours", {"unitCode", "value", "qualityControl"}, {"precipitationLast3Hours.unitCode", "precipitationLast3Hours.value", "precipitationLast3Hours.qualityControl"}),
+    #"Expanded precipitationLast6Hours" = Table.ExpandRecordColumn(#"Expanded precipitationLast3Hours", "precipitationLast6Hours", {"unitCode", "value", "qualityControl"}, {"precipitationLast6Hours.unitCode", "precipitationLast6Hours.value", "precipitationLast6Hours.qualityControl"}),
+    #"Expanded relativeHumidity" = Table.ExpandRecordColumn(#"Expanded precipitationLast6Hours", "relativeHumidity", {"unitCode", "value", "qualityControl"}, {"relativeHumidity.unitCode", "relativeHumidity.value", "relativeHumidity.qualityControl"}),
+    #"Expanded windChill" = Table.ExpandRecordColumn(#"Expanded relativeHumidity", "windChill", {"unitCode", "value", "qualityControl"}, {"windChill.unitCode", "windChill.value", "windChill.qualityControl"}),
+    #"Expanded heatIndex" = Table.ExpandRecordColumn(#"Expanded windChill", "heatIndex", {"unitCode", "value", "qualityControl"}, {"heatIndex.unitCode", "heatIndex.value", "heatIndex.qualityControl"})
+in
+    #"Expanded heatIndex"
