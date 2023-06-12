@@ -1,0 +1,3 @@
+https://www.data-insights.de/loops-in-m-recursion/
+https://www.data-insights.de/part-3-for-next-loop-using-list-accumulate-in-m-for-power-query/
+https://exceed.hr/blog/list-generate-and-looping-in-powerquery/
