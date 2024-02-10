@@ -1,0 +1,30 @@
+﻿[
+    {
+        "YEAR": "2019",
+        "BENE_STATE_ABRVTN": "GA",
+        "BENE_COUNTY_DESC": "Fulton",
+        "TOT_BENES": "136094",
+        "PRSCRPTN_DRUG_TOT_BENES": "103854"
+    },
+    {
+        "YEAR": "2020",
+        "BENE_STATE_ABRVTN": "GA",
+        "BENE_COUNTY_DESC": "Fulton",
+        "TOT_BENES": "139305",
+        "PRSCRPTN_DRUG_TOT_BENES": "107597"
+    },
+    {
+        "YEAR": "2021",
+        "BENE_STATE_ABRVTN": "GA",
+        "BENE_COUNTY_DESC": "Fulton",
+        "TOT_BENES": "141265",
+        "PRSCRPTN_DRUG_TOT_BENES": "110830"
+    },
+    {
+        "YEAR": "2022",
+        "BENE_STATE_ABRVTN": "GA",
+        "BENE_COUNTY_DESC": "Fulton",
+        "TOT_BENES": "144113",
+        "PRSCRPTN_DRUG_TOT_BENES": "114035"
+    }
+]
